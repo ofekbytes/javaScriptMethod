@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>local data </title>
+
+
+    <!-- //js// -->
+
+    <!-- <script src="test1.js"></script> -->
+
+</head>
+
+<body>
+    <div> <h2> local Storage db </h2> </div>
+
+    <div>
+        <label>enter text</label>
+    </div>
+
+    <div>
+        <input id="ls" type="text" size="10" placeholder="enter text here"> 
+    </div>        
+    <br/>
+    <div>
+        <button id="readdb" item-width="10">readdb</button>
+        <button id="writedb" item-width="10">writedb</button>
+        <button id="cleandb" item-width="10">cleandb</button>
+        <button id="save-as" item-width="20">Save as</button>
+    </div>
+
+    <div>
+        <ul>
+        <li> <div id="output"></div> </li>  
+        </ul>
+    </div>
+
+<script>
+
+    document.getElementById('readdb').addEventListener('click',readdb); 
+    document.getElementById('writedb').addEventListener('click',writedb); 
+    document.getElementById('cleandb').addEventListener('click',cleandb); 
+    document.getElementById('save-as').addEventListener('click',fnSaveAs); 
+
+    function fnSaveAs()
+    {
+        console.log("save as");
+    }
+
+    function writeDefaultValue()
+    {
+
+        localStorage.setItem('field1','field1-default');
+    }
+
+    function readdb()
+    {
+        console.log("readdb");
+
+
+        if (localStorage.getItem('field1') === null)
+        {
+            console.warn("i am null :-(");
+            writeDefaultValue();
+
+        }
+        document.getElementById("output").innerHTML = "field1 ==> " + localStorage.getItem('field1');
+        console.log("field1 ===> " + localStorage.getItem('field1') );
+
+    }
+
+
+    function writedb()
+    {
+        var txtUser = "";
+
+        txtUser = document.getElementById("ls").value;
+        console.log(txtUser)
+        localStorage.setItem('field1',txtUser);
+        console.log("field1 ===> " + localStorage.getItem('field1') );
+    }
+
+
+
+    function cleandb()
+    {
+        console.log("cleandb");
+        document.getElementById("output").innerHTML = "cleandb";
+        localStorage.clear();
+    }
+
+</script>
+
+</body>
